@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferreteria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    
+    <header class="hero">
+         <nav class="menu">
+          
+            <ul>
+                <li><a href="./index.html">Ferreteria</a></li>
+                <li><a href="/Electronica/index.html">Electronica</a></li>
+            </ul>
+        </nav>
+        <h1>Ferreteria</h1>
+        <p>Sube tu archivo Excel y filtra los datos</p>
+       
+    </header>
+    
+    <div class="container-1">  
+        <img src="/img/logo-ferr.jpg" alt="logo" width="80">
+        <label for="fileInput" class="file-upload-label">
+            Seleccionar archivo
+            <input type="file" id="fileInput" accept=".xlsx">
+        </label>
+        <span id="fileName" class="file-name"></span>
+        <button id="filterButton" class="btn">Filtrar Datos</button>
+    </div>
+
+    <section class="data-section">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>RFC Emisor</th>
+                    <th>RFC Receptor</th>
+                    <th>Concepto</th>
+                    <th>Costo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Datos filtrados aparecerán aquí -->
+            </tbody>
+        </table>
+       
+<div class="data-section">
+    <!-- El botón de descarga será añadido aquí dinámicamente -->
+</div>
+
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
+
