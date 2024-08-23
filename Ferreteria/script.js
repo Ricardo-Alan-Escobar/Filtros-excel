@@ -2,6 +2,7 @@ document.getElementById('fileInput').addEventListener('change', function() {
     const fileName = this.files[0]?.name || 'Ningún archivo seleccionado';
     document.getElementById('fileName').textContent = fileName;
 });
+
 document.getElementById('filterButton').addEventListener('click', () => {
     const fileInput = document.getElementById('fileInput');
     if (fileInput.files.length === 0) {
@@ -41,9 +42,8 @@ document.getElementById('filterButton').addEventListener('click', () => {
                 'Candados', 'Cadenas', 'Cintas de seguridad', 'Llaves', 'Biseles','Aceite' , 'MTS', 'MM','CM'
             ];
             
-
             // Filtrar datos: buscar palabras clave en la columna 'Conceptos'
-            const filteredData = jsonData.filter(row => {
+            let filteredData = jsonData.filter(row => {
                 if (row.Conceptos) {
                     return herramientas.some(herramienta => row.Conceptos.toLowerCase().includes(herramienta.toLowerCase()));
                 }
@@ -56,18 +56,38 @@ document.getElementById('filterButton').addEventListener('click', () => {
             }));
             
             // Calcular total de la columna 'Total'
-            const totalSum = filteredData.reduce((sum, row) => sum + (row['Total'] || 0), 0);
+            let totalSum = filteredData.reduce((sum, row) => sum + (row['Total'] || 0), 0);
             
             // Mostrar datos filtrados en la tabla
             const tableBody = document.querySelector('#dataTable tbody');
             tableBody.innerHTML = '';
-            filteredData.forEach(row => {
+            filteredData.forEach((row, index) => {
                 const tr = document.createElement('tr');
+                
                 Object.values(row).forEach(cell => {
                     const td = document.createElement('td');
                     td.textContent = cell;
                     tr.appendChild(td);
                 });
+
+                // Crear el botón de eliminar
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Eliminar';
+                deleteButton.classList.add('btn-delete');
+                deleteButton.addEventListener('click', () => {
+                    // Restar el total de la fila al total general
+                    totalSum -= row['Total'];
+                    tdTotalValue.textContent = totalSum.toFixed(2); // Actualizar el total en la tabla
+
+                    // Eliminar la fila de la tabla
+                    tableBody.removeChild(tr);
+                });
+                
+                // Añadir el botón de eliminar a la fila
+                const tdDelete = document.createElement('td');
+                tdDelete.appendChild(deleteButton);
+                tr.appendChild(tdDelete);
+
                 tableBody.appendChild(tr);
             });
 

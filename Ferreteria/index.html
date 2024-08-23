@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ferreteria</title>
+    <link rel="icon" href="/img/logo-mav.jpg" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -18,14 +19,15 @@
                 <li><a href="./index.html">Ferreteria</a></li>
                 <li><a href="/Electronica/index.html">Electronica</a></li>
             </ul>
-        </nav>
+        </nav> 
+        <img src="/img/icono.png"  alt="" width="350px">  
         <h1>Ferreteria</h1>
         <p>Sube tu archivo Excel y filtra los datos</p>
        
     </header>
     
     <div class="container-1">  
-        <img src="/img/logo-ferr.jpg" alt="logo" width="80">
+        <img src="/img/logo-ferr.jpg" class="logo" alt="logo" width="80">
         <label for="fileInput" class="file-upload-label">
             Seleccionar archivo
             <input type="file" id="fileInput" accept=".xlsx">
@@ -42,6 +44,7 @@
                     <th>RFC Receptor</th>
                     <th>Concepto</th>
                     <th>Costo</th>
+                    <th>Acción</th> 
                 </tr>
             </thead>
             <tbody>

@@ -83,6 +83,26 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.logo{
+    mix-blend-mode: multiply;
+}
+.btn-delete {
+    background-color: #dc3545; /* Color de fondo del botón de eliminar */
+    color: #fff; /* Color del texto */
+    padding: 0.5rem 1rem; /* Espaciado interno del botón */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Mostrar cursor de mano */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+    font-weight: bold; /* Texto en negrita */
+    text-align: center; /* Centrar el texto */
+    display: inline-block; /* Mostrar como botón */
+}
+
+.btn-delete:hover {
+    background-color: #c82333; /* Color de fondo al pasar el mouse */
+    transform: scale(1.05); /* Agrandar ligeramente al pasar el mouse */
+}
 
 .btn {
     background-color: #007BFF;
@@ -102,7 +122,7 @@ body {
 
 .data-section {
     width: 100%; /* Cambiado de 90% a 100% */
-    max-width: 1600px; /* Incrementado de 800px a 1600px */
+    max-width: 90%; /* Incrementado de 800px a 1600px */
     margin: 2rem auto;
 }
 
