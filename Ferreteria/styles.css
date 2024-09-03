@@ -7,7 +7,28 @@ body {
     background-color: #f7f7f7;
     color: #333;
 }
-
+#cfdiFilter{
+    padding: 15px;
+    padding-right: 50px;
+    border-radius: 7px;
+    font-size: 16px;
+    margin-right: 15px;
+}
+#cfdiFilter:hover{
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+#tipoFiltro{
+    margin-right: 15px;
+    padding: 15px;
+    padding-right: 50px;
+    border-radius: 7px;
+    font-size: 16px;
+}
+#tipoFiltro:hover{
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
 .hero {
     background-color: #333;
     color: #fff;
@@ -33,13 +54,13 @@ body {
 }
 
 .hero h1 {
-    font-size: 2rem;
+    
     margin-bottom: 0.5rem;
 }
 
 .hero p {
     font-size: 1rem;
-    font-weight: 300;
+   
 }
 
 .container-1 {
@@ -122,8 +143,8 @@ th, td {
 }
 
 th {
-    background-color: #f7f7f7;
-    font-weight: 500;
+    background-color: #e3e3e3;
+    font-weight: 600;
 }
 
 

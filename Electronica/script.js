@@ -2,9 +2,11 @@ document.getElementById('fileInput').addEventListener('change', function() {
     const fileName = this.files[0]?.name || 'Ningún archivo seleccionado';
     document.getElementById('fileName').textContent = fileName;
 });
-
 document.getElementById('filterButton').addEventListener('click', () => {
     const fileInput = document.getElementById('fileInput');
+    const cfdiFilterValue = document.getElementById('cfdiFilter').value;
+    const tipoFiltroValue = document.getElementById('tipoFiltro').value;
+
     if (fileInput.files.length === 0) {
         alert('Por favor, sube un archivo Excel.');
         return;
@@ -20,10 +22,10 @@ document.getElementById('filterButton').addEventListener('click', () => {
             const sheetName = workbook.SheetNames[0];
             const worksheet = workbook.Sheets[sheetName];
             const jsonData = XLSX.utils.sheet_to_json(worksheet);
-            
+
             const productosElectronicos = [
                 'Celular', 'Tablet', 'Toner', 'Laptop', 'Computadora', 
-                'Pantalla', 'Teclado', 'Ratón', 'Impresora', 'Router', 
+                'Pantalla', 'Teclado', 'Ratón', 'Impresora', 'Router', 'Telecomunicaciones',
                 'Modem', 'Disco Duro', 'Memoria USB',  'swhich', 'tinta','cartucho',
                 'Cargador', 'Batería', 'Auriculares', 'Altavoz', 'Micrófono',
                 'Cámara', 'Proyector', 'Joystick', 'impresora',
@@ -33,19 +35,24 @@ document.getElementById('filterButton').addEventListener('click', () => {
             ];
 
             let filteredData = jsonData.filter(row => {
-                if (row.Conceptos) {
+                let matchesCFDI = !cfdiFilterValue || row.UsoCFDI === cfdiFilterValue;
+                let matchesTipo = tipoFiltroValue === 'Todos' || row.Tipo === tipoFiltroValue;
+
+                if (matchesCFDI && matchesTipo && row.Conceptos) {
                     return productosElectronicos.some(producto => row.Conceptos.toLowerCase().includes(producto.toLowerCase()));
                 }
                 return false;
             }).map(row => ({
                 'RFC Emisor': row['RFC Emisor'],
                 'RFC Receptor': row['RFC Receptor'],
+                'Tipo': row['Tipo'],
+                'UsoCFDI': row['UsoCFDI'], 
                 'Concepto': row['Conceptos'],
                 'Total': parseFloat(row['Total']) || 0
             }));
-            
+
             let totalSum = filteredData.reduce((sum, row) => sum + (row['Total'] || 0), 0);
-            
+
             const tableBody = document.querySelector('#dataTable tbody');
             tableBody.innerHTML = '';
             filteredData.forEach((row, index) => {
@@ -61,7 +68,7 @@ document.getElementById('filterButton').addEventListener('click', () => {
                 deleteButton.textContent = 'Eliminar';
                 deleteButton.classList.add('btn-delete');
                 deleteButton.addEventListener('click', () => {
-                    totalSum -= row['Total']; // Restar el valor al total
+                    totalSum -= row['Total']; 
                     document.getElementById('totalSum').textContent = totalSum.toFixed(2);
                     tr.remove();
                     filteredData.splice(index, 1);
@@ -79,7 +86,7 @@ document.getElementById('filterButton').addEventListener('click', () => {
             trTotal.appendChild(tdTotal);
             const tdTotalValue = document.createElement('td');
             tdTotalValue.textContent = totalSum.toFixed(2);
-            tdTotalValue.id = 'totalSum'; // Añadir un id para facilitar la actualización
+            tdTotalValue.id = 'totalSum'; 
             trTotal.appendChild(tdTotalValue);
             tableBody.appendChild(trTotal);
 

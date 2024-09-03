@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ferreteria</title>
-    <link rel="icon" href="/img/logo-mav.jpg" type="image/x-icon">
+    <link rel="icon" href="../img/logo-mav.jpg" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,25 +14,49 @@
     
     <header class="hero">
          <nav class="menu">
-          
             <ul>
                 <li><a href="./index.html">Ferreteria</a></li>
-                <li><a href="/Electronica/index.html">Electronica</a></li>
+                <li><a href="../Electronica/index.html">Electronica</a></li>
+                <li><a href="../Filtro%20Llamadas%20Telefonicas/Index.html">Filtro Telefonico</a></li>
             </ul>
         </nav> 
-        <img src="/img/icono.png"  alt="" width="350px">  
+        <img src="../img/icono.png" alt="" width="350px">  
         <h1>Ferreteria</h1>
         <p>Sube tu archivo Excel y filtra los datos</p>
-       
     </header>
     
     <div class="container-1">  
-        <img src="/img/logo-ferr.jpg" class="logo" alt="logo" width="80">
+        <img src="../img/logo-ferr.jpg" class="logo" alt="logo" width="80">
         <label for="fileInput" class="file-upload-label">
             Seleccionar archivo
             <input type="file" id="fileInput" accept=".xlsx">
         </label>
-        <span id="fileName" class="file-name"></span>
+       <span id="fileName" class="file-name"></span>
+       <div class="secciones"> 
+         <!-- Menú desplegable para filtrar por tipo -->
+    <label for="tipoFiltro">Filtrar por Tipo:</label>
+    <select id="tipoFiltro">
+        <option value="Todos">Todos</option>
+        <option value="Factura">Factura</option>
+        <option value="Traslado">Traslado</option>
+        <option value="NotaCredito">Nota de Crédito</option>
+    </select>
+    <label for="cfdiFilter">Filtrar por CFDI:</label>
+    <select id="cfdiFilter">
+        <option value="">Todos</option>
+        <option value="CP01">CP01</option>
+        <option value="G01 - Adquisición de mercancias">G01</option>
+        <option value="G02 - Devoluciones, descuentos o bonificaciones">G02</option>
+        <option value="G03 - Gastos en general">G03</option>
+        <option value="I01 - Construcciones">I01</option>
+        <option value="I02 - Mobilario y equipo de oficina por inversiones">I02</option>
+        <option value="I03 - Equipo de transporte">I03</option>
+        <option value="I04 - Equipo de computo y accesorios">I04</option>
+        <option value="I08 - Otra maquinaria y equipo">I08</option>
+        <option value="P01 - Por definir">P01</option>
+        <option value="S01">S01</option>
+    </select>
+</div>
         <button id="filterButton" class="btn">Filtrar Datos</button>
     </div>
 
@@ -42,6 +66,8 @@
                 <tr>
                     <th>RFC Emisor</th>
                     <th>RFC Receptor</th>
+                    <th>Factura</th>
+                    <th>CFDI</th>
                     <th>Concepto</th>
                     <th>Costo</th>
                     <th>Acción</th> 
@@ -52,9 +78,9 @@
             </tbody>
         </table>
        
-<div class="data-section">
-    <!-- El botón de descarga será añadido aquí dinámicamente -->
-</div>
+        <div class="data-section">
+            <!-- El botón de descarga será añadido aquí dinámicamente -->
+        </div>
 
     </section>
 
@@ -62,4 +88,3 @@
     <script src="./script.js"></script>
 </body>
 </html>
-
