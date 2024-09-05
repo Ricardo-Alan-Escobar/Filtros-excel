@@ -11,7 +11,6 @@ document.getElementById('filterButton').addEventListener('click', () => {
         alert('Por favor, sube un archivo Excel.');
         return;
     }
-
     const file = fileInput.files[0];
     const reader = new FileReader();
 
@@ -44,7 +43,7 @@ document.getElementById('filterButton').addEventListener('click', () => {
                 return false;
             }).map(row => ({
                 'RFC Emisor': row['RFC Emisor'],
-                'RFC Receptor': row['RFC Receptor'],
+                'Nombre Emisor': row['Nombre Emisor'],
                 'Tipo': row['Tipo'],
                 'UsoCFDI': row['UsoCFDI'], 
                 'Concepto': row['Conceptos'],
@@ -65,11 +64,11 @@ document.getElementById('filterButton').addEventListener('click', () => {
 
                 const tdDelete = document.createElement('td');
                 const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Eliminar';
+                deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
                 deleteButton.classList.add('btn-delete');
                 deleteButton.addEventListener('click', () => {
                     totalSum -= row['Total']; 
-                    document.getElementById('totalSum').textContent = totalSum.toFixed(2);
+                    document.getElementById('totalSum').textContent = totalSum.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
                     tr.remove();
                     filteredData.splice(index, 1);
                 });
@@ -85,7 +84,7 @@ document.getElementById('filterButton').addEventListener('click', () => {
             tdTotal.textContent = 'Total';
             trTotal.appendChild(tdTotal);
             const tdTotalValue = document.createElement('td');
-            tdTotalValue.textContent = totalSum.toFixed(2);
+            tdTotalValue.textContent = totalSum.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
             tdTotalValue.id = 'totalSum'; 
             trTotal.appendChild(tdTotalValue);
             tableBody.appendChild(trTotal);
@@ -102,7 +101,7 @@ document.getElementById('filterButton').addEventListener('click', () => {
             if (!downloadLink) {
                 downloadLink = document.createElement('a');
                 downloadLink.id = 'downloadLink';
-                downloadLink.textContent = 'Descargar Datos Filtrados';
+                downloadLink.innerHTML = '<i class="fa-solid fa-download"></i> Descargar Datos Filtrados';
                 downloadLink.style.display = 'block';
                 downloadLink.style.marginTop = '20px';
                 document.querySelector('.data-section').appendChild(downloadLink);

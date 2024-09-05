@@ -195,7 +195,20 @@ tbody tr:hover {
     border-radius: 5px;
     transition: background-color 0.3s;
 }
-
+#scrollButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#scrollButton:hover{
+    background-color: #4688cf;
+}
 .btn-delete {
     background-color: #dc3545; /* Color de fondo del botón de eliminar */
     color: #fff; /* Color del texto */

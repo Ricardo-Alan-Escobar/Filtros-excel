@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <link rel="stylesheet" href="./styles-elec.css">
 </head>
@@ -22,7 +23,7 @@
            </ul>
        </nav>
        <img src="../img/icono.png" alt="" width="350px">  
-       <h1>Electronica</h1>
+       <h1><i class="fa-solid fa-microchip"></i> Electronica</h1>
        <p>Sube tu archivo Excel y filtra los datos</p>
       
    </header>
@@ -30,7 +31,7 @@
     <div class="container-1">
         <img src="../img/logo-mav.jpg" alt="logo" class="logo" width="70">
         <label for="fileInput" class="file-upload-label">
-            Seleccionar archivo
+             Seleccionar archivo <i class="fa-solid fa-file-arrow-up"></i>
             <input type="file" id="fileInput" accept=".xlsx">
         </label>
         <span id="fileName" class="file-name"></span>
@@ -59,7 +60,7 @@
         <option value="S01">S01</option>
     </select>
 </div>
-        <button id="filterButton" class="btn">Filtrar Datos</button>
+        <button id="filterButton" class="btn"><i class="fa-solid fa-filter"></i> Filtrar Datos</button>
     </div>
 
     <section class="data-section">
@@ -67,7 +68,7 @@
             <thead>
                 <tr>
                     <th>RFC Emisor</th>
-                    <th>RFC Receptor</th>
+                    <th>Nombre Emisor</th>
                     <th>Factura</th>
                     <th>CFDI</th>
                     <th>Concepto</th>
@@ -83,9 +84,33 @@
 <div class="data-section">
     <!-- El botón de descarga será añadido aquí dinámicamente -->
 </div>
-
+<button id="scrollButton"><i class="fas fa-arrow-down"></i></button>
     </section>
+    <script>
+        const scrollButton = document.getElementById('scrollButton');
 
+        scrollButton.addEventListener('click', function() {
+            if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+        });
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+                scrollButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            } else {
+                scrollButton.innerHTML = '<i class="fas fa-arrow-down"></i>';
+            }
+        });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
     <script src="./script.js"></script>
 </body>
