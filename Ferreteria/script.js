@@ -24,7 +24,6 @@ document.getElementById('filterButton').addEventListener('click', () => {
             const worksheet = workbook.Sheets[sheetName];
             const jsonData = XLSX.utils.sheet_to_json(worksheet);
 
-            // Definir las herramientas de ferretería
             const herramientas = [
                 'Martillo', 'Masos', 'Cincel', 'Tuercas', 'Tornillos', 'Manguera',
                 'Destornillador', 'Alicates', 'Llave inglesa', 'Sierra',
@@ -44,24 +43,33 @@ document.getElementById('filterButton').addEventListener('click', () => {
                 'Candados', 'Cadenas', 'Cintas de seguridad', 'Llaves', 'Biseles', 'Aceite'
             ];
 
+            const palabrasOmitir = [
+                'servicio', 'Suministro', 'Alquiler', 'Fabricación', 'FABRICACION',
+                'Colocación','Colocación', 'Renta', 'Aplicación', 'Proemo', 
+                'Recubrimiento', 'Proyecto' , 'Mantenimiento', 'AFINACION', 'COLOCACION','BATERIA'
+            ];
+
             let filteredData = jsonData.filter(row => {
                 let matchesCFDI = !cfdiFilterValue || row.UsoCFDI === cfdiFilterValue;
                 let matchesTipo = tipoFiltroValue === 'Todos' || row.Tipo === tipoFiltroValue;
 
                 if (matchesCFDI && matchesTipo && row.Conceptos) {
-                    return herramientas.some(herramienta => row.Conceptos.toLowerCase().includes(herramienta.toLowerCase()));
+                    let incluyePalabrasOmitir = palabrasOmitir.some(palabra => row.Conceptos.toLowerCase().includes(palabra.toLowerCase()));
+                    if (!incluyePalabrasOmitir) {
+                        return herramientas.some(herramienta => row.Conceptos.toLowerCase().includes(herramienta.toLowerCase()));
+                    }
                 }
                 return false;
             }).map(row => ({
                 'RFC Emisor': row['RFC Emisor'],
                 'Nombre Emisor': row['Nombre Emisor'],
-                'Tipo': row['Tipo'],  // Incluir la columna Tipo
-                'UsoCFDI': row['UsoCFDI'],  // Incluir la columna UsoCFDI
+                'Tipo': row['Tipo'],
+                'UsoCFDI': row['UsoCFDI'], 
                 'Concepto': row['Conceptos'],
-                'Total': parseFloat(row['Total']) || 0 // Total es un número
+                'Total': parseFloat(row['Total']) || 0
             }));
 
-           let totalSum = filteredData.reduce((sum, row) => sum + (row['Total'] || 0), 0);
+            let totalSum = filteredData.reduce((sum, row) => sum + (row['Total'] || 0), 0);
 
             const tableBody = document.querySelector('#dataTable tbody');
             tableBody.innerHTML = '';
@@ -81,7 +89,7 @@ document.getElementById('filterButton').addEventListener('click', () => {
 
                 deleteButton.addEventListener('click', () => {
                     totalSum -= row['Total'];
-                     document.getElementById('totalSum').textContent = totalSum.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
+                    document.getElementById('totalSum').textContent = totalSum.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
                     tr.remove();
                     filteredData.splice(index, 1);
                 });
@@ -97,7 +105,6 @@ document.getElementById('filterButton').addEventListener('click', () => {
             tdTotal.textContent = 'Total';
             trTotal.appendChild(tdTotal);
             const tdTotalValue = document.createElement('td');
-            tdTotalValue.textContent = totalSum.toFixed(2);
             tdTotalValue.textContent = totalSum.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' });
             tdTotalValue.id = 'totalSum';
             trTotal.appendChild(tdTotalValue);
