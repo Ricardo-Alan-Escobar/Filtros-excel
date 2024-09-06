@@ -73,7 +73,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
     text-align: center;
-    width: 100%;
+    width: 90%;
 }
 
 .file-upload-label:hover {
@@ -186,6 +186,8 @@ tbody tr:hover {
 }
 
 @media (max-width: 600px) {
+    
+    
     .hero h1 {
         font-size: 1.5rem;
     
@@ -236,13 +238,96 @@ tbody tr:hover {
 
 
 @media (max-width: 600px) {
-    .menu ul {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .menu ul li a {
-        display: block;
-        text-align: center;
+    #tipoFiltro{
+        margin-bottom: 10px;
     }
 }
+/* Estilos generales para el menú */
+.menu {
+    position: relative;
+    background-color: #333;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.menu ul li {
+    margin: 0;
+}
+
+.menu ul li a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white;
+}
+
+.menu ul li a:hover {
+    background-color: #575757;
+}
+
+/* Estilos para la hamburguesa */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.menu-toggle span {
+    background-color: white;
+    height: 3px;
+    border-radius: 3px;
+    transition: 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+    }
+
+    .menu ul li a {
+        text-align: center;
+        padding: 15px;
+        border-bottom: 1px solid #575757;
+    }
+    .ocultar{
+        display: none;
+    }
+    .menu-toggle {
+        display: flex;
+        margin-left: auto;
+    }
+
+    .menu ul.show {
+        display: flex;
+    }
+}
+
+/* Animación del menú de hamburguesa */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 7px;
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: -7px;
+}
+

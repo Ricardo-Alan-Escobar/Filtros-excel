@@ -16,6 +16,11 @@
     
     <header class="hero">
         <nav class="menu">  
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
            <ul>
                <li><a href="../Ferreteria/index.html">Ferreteria</a></li>
                <li><a href="./index.html">Electronica</a></li>
@@ -67,11 +72,11 @@
         <table id="dataTable">
             <thead>
                 <tr>
-                    <th>RFC Emisor</th>
+                    <th class="ocultar">RFC Emisor</th>
                     <th>Nombre Emisor</th>
-                    <th>Factura</th>
+                    <th class="ocultar">Factura</th>
                     <th>CFDI</th>
-                    <th>Concepto</th>
+                    <th class="ocultar">Concepto</th>
                     <th>Costo</th>
                     <th>Acción</th> 
                 </tr>
@@ -110,6 +115,10 @@
                 scrollButton.innerHTML = '<i class="fas fa-arrow-down"></i>';
             }
         });
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+    this.classList.toggle('active');
+    document.querySelector('.menu ul').classList.toggle('show');
+});
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
     <script src="./script.js"></script>

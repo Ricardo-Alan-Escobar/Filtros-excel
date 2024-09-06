@@ -30,7 +30,7 @@ document.getElementById('filterButton').addEventListener('click', () => {
                 'Destornillador', 'Alicates', 'Llave inglesa', 'Sierra',
                 'Cinta métrica', 'Serrucho', 'Brocas', 'Pinceles', 'Alicates de corte',
                 'Rondana', 'Solera', 'Tubo', 'Escudo', 'Angulo',
-                'Varilla', 'Roscada', 'Arbol', 'Placa', 'Boquilla', 'Barra',
+                'Roscada', 'Arbol', 'Placa', 'Barra',
                 'Lente', 'Disco', 'Tijera', 'Birela', 'Rodaja', 'Soldadura',
                 'Llave de tubo', 'Nivel', 'Cepillo', 'Sargento', 'Escofina',
                 'Taladro', 'Caladora', 'Amoladora', 'Remachadora', 'Engrapadora',
@@ -38,11 +38,10 @@ document.getElementById('filterButton').addEventListener('click', () => {
                 'Compresor de aire', 'Tijeras para chapa', 'Taladro de banco', 'Aspiradora industrial',
                 'Pistola de calor', 'Pulidora', 'Esmeril', 'Soplete', 'Clavos',
                 'Arandelas', 'Bisagras', 'Pasadores', 'Grilletes', 'Anclas',
-                'Bridas', 'Grapas', 'Sellador', 'Masilla', 'Cemento',
-                'Silicona', 'Cola de carpintero', 'Impermeabilizante', 'Cinta aislante', 'Cinta de teflón', 'Abrazadera',
-                'Pintura', 'Barniz', 'Tornillos para madera', 'Tornillos para concreto',
+                'Bridas', 'Grapas', 'Cinta aislante', 'Cinta de teflón',
+                'Tornillos para madera', 'Tornillos para concreto',
                 'Tornillos autorroscantes', 'Clavijas', 'Tacos de expansión', 'Cerraduras',
-                'Candados', 'Cadenas', 'Cintas de seguridad', 'Llaves', 'Biseles', 'Aceite', 'MTS', 'MM', 'CM'
+                'Candados', 'Cadenas', 'Cintas de seguridad', 'Llaves', 'Biseles', 'Aceite'
             ];
 
             let filteredData = jsonData.filter(row => {
